@@ -1,19 +1,19 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import useSWR, { SWRConfiguration } from 'swr'
+import * as convert from 'xml-js'
 
 const baseURL = process.env.API_URL
 const axiosInstance = axios.create({ baseURL })
 
-const fetcher = <T = unknown, D = unknown>(config: AxiosRequestConfig): Promise<T> =>
+const fetcher = <D = unknown>(config: AxiosRequestConfig) =>
   axiosInstance
-    .request<T, AxiosResponse<T>, D>({
+    .request<any, AxiosResponse<any>, D>({
       ...config,
       params: {
         ...config.params,
-        serviceKey: process.env.API_KEY,
       },
     })
-    .then(({ data }) => data)
+    .then(({ data }) => (typeof data === 'string' ? convert.xml2json(data) : data))
 
 export const useSwr = <T = unknown, D = unknown>(path: string, params: D, swrOptions?: SWRConfiguration) => {
   return useSWR(path, (url) => fetcher({ url, params }), swrOptions)
