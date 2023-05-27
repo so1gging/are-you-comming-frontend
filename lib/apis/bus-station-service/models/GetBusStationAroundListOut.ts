@@ -12,7 +12,7 @@
  * x: X 좌표
  * y: Y 좌표
  */
-interface GetBusStationAroundOut {
+interface GetBusStationAroundListOut {
   resultCode: string
   resultMessage: string
   stationId: string
@@ -25,4 +25,4 @@ interface GetBusStationAroundOut {
   y: number
 }
 
-export default GetBusStationAroundOut
+export default GetBusStationAroundListOut

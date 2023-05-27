@@ -4,9 +4,9 @@
  * x: X 좌표
  * y: Y 좌표
  */
-interface GetBusStationAroundIn {
+interface GetBusStationAroundListIn {
   x: number
   y: number
 }
 
-export default GetBusStationAroundIn
+export default GetBusStationAroundListIn
