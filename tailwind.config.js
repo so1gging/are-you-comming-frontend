@@ -25,7 +25,11 @@ module.exports = {
         full: '430px',
       },
       minHeight: {
-        full: '932px',
+        full: '600px',
+      },
+      height: {
+        90: '90px',
+        55: '55px',
       },
     },
   },
