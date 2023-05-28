@@ -1,5 +1,4 @@
 'use client'
-import './globals.css'
 import { Inter } from 'next/font/google'
 import { SWRConfig } from 'swr'
 import GlobalStyle from '@/lib/styles/GlobalStyle'
