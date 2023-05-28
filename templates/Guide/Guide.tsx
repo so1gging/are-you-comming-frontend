@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
-import styled from 'styled-components'
 import Image from 'next/image'
 import { StaticImageData } from 'next/dist/client/image'
-import Typography from '@/components/Typography/Typography'
 
 interface GuideProps {
   src: StaticImageData | string | { default: StaticImageData }
@@ -11,17 +9,11 @@ interface GuideProps {
 }
 const Guide: FC<GuideProps> = ({ src, alt, text }) => {
   return (
-    <Wrapper>
+    <div className="flex flex-col justify-center items-center">
       <Image src={src} alt={alt} width={125} height={125} />
-      <Typography variant="h1">{text}</Typography>
-    </Wrapper>
+      <p className="text-center text-h1">{text}</p>
+    </div>
   )
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`
 
 export default Guide
