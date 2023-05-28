@@ -27,6 +27,9 @@ module.exports = {
       minHeight: {
         full: '600px',
       },
+      height: {
+        90: '90px',
+      },
     },
   },
   plugins: [],
