@@ -1,10 +1,9 @@
 'use client'
 import { Inter } from 'next/font/google'
 import { SWRConfig } from 'swr'
-import GlobalStyle from '@/lib/styles/GlobalStyle'
-import styled from 'styled-components'
 import ContentLayout from '@/components/layouts/ContentLayout'
-import StyledComponentsRegistry from '@/components/StyledComponentsRegistry'
+// These styles apply to every route in the application
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,23 +15,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         revalidateOnReconnect: true,
       }}
     >
-      <GlobalStyle />
       <html lang="en">
-        <StyledComponentsRegistry>
-          <Body className={inter.className}>
-            <ContentLayout>{children}</ContentLayout>
-          </Body>
-        </StyledComponentsRegistry>
+        <body className={`${inter.className} w-screen h-screen bg-white flex items-center justify-center `}>
+          <ContentLayout>{children}</ContentLayout>
+        </body>
       </html>
     </SWRConfig>
   )
 }
-
-const Body = styled.body`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-`
