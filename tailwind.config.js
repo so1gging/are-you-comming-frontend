@@ -21,15 +21,13 @@ module.exports = {
         h2: ['20px', { fontWeight: '400', lineHeight: '24px' }],
         h1: ['20px', { fontWeight: '600', lineHeight: '24px' }],
       },
-      minWidth: {
-        full: '430px',
-      },
-      minHeight: {
-        full: '600px',
+      width: {
+        430: '430px',
       },
       height: {
         90: '90px',
         55: '55px',
+        900: '900px',
       },
     },
   },
