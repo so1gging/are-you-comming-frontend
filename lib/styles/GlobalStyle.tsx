@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #1A1E27;
+    letter-spacing: -0.06em;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
   }
 
   li {
