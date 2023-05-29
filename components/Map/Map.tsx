@@ -1,8 +1,32 @@
 'use client'
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import useGeolocation from 'react-hook-geolocation'
 
 const Map = () => {
+  const [map, setMap] = useState<naver.maps.Map>()
+  const [current, setCurrent] = useState<naver.maps.Marker>()
   const mapElement = useRef(null)
+  const geolocation = useGeolocation()
+
+  useEffect(() => {
+    if (!geolocation.error) {
+      const currentLocation = {
+        lat: geolocation.latitude,
+        lng: geolocation.longitude,
+      }
+
+      const marker = new naver.maps.Marker({
+        position: currentLocation,
+        map,
+      })
+
+      map?.morph(currentLocation)
+      setCurrent(marker)
+    }
+    return () => {
+      current?.setMap(null)
+    }
+  }, [geolocation])
 
   useEffect(() => {
     const { naver } = window
@@ -15,11 +39,12 @@ const Map = () => {
       zoom: 17,
       zoomControl: false,
     }
-    new naver.maps.Map(mapElement.current, mapOptions)
-    // new naver.maps.Marker({
-    //   position: location,
-    //   map,
-    // })
+    const map = new naver.maps.Map(mapElement.current, mapOptions)
+    setMap(map)
+
+    return () => {
+      current?.setMap(null)
+    }
   }, [])
 
   return <div ref={mapElement} id="map" className="w-full h-300" />
