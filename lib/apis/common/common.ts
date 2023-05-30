@@ -10,11 +10,12 @@ const fetcher = <D = unknown>(config: AxiosRequestConfig) =>
     .request<any, AxiosResponse<any>, D>({
       ...config,
       params: {
+        serviceKey: process.env.API_KEY,
         ...config.params,
       },
     })
     .then(({ data }) => (typeof data === 'string' ? convert.xml2json(data) : data))
 
-export const useSwr = <T = unknown, D = unknown>(path: string, params: D, swrOptions?: SWRConfiguration) => {
+export const useSwr = <T = unknown, D = unknown>(path: string | null, params: D, swrOptions?: SWRConfiguration) => {
   return useSWR(path, (url) => fetcher({ url, params }), swrOptions)
 }
