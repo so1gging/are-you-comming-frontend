@@ -1,19 +1,26 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import useGeolocation from 'react-hook-geolocation'
+import { useGetBusStationAroundListOut } from '@/lib/apis/bus-station-service/api/bus-station-service'
 
 const Map = () => {
   const [map, setMap] = useState<naver.maps.Map>()
   const [current, setCurrent] = useState<naver.maps.Marker>()
+  const [location, setLocation] = useState<{ lat: number; lng: number } | undefined>(undefined)
   const mapElement = useRef(null)
   const geolocation = useGeolocation()
+  const { data } = useGetBusStationAroundListOut(
+    { x: location?.lng || 0, y: location?.lat || 0 },
+    location?.lng !== undefined && location?.lat !== undefined,
+  )
 
   useEffect(() => {
-    if (!geolocation.error) {
+    if (geolocation.latitude & geolocation.longitude) {
       const currentLocation = {
         lat: geolocation.latitude,
         lng: geolocation.longitude,
       }
+      setLocation(currentLocation)
 
       const marker = new naver.maps.Marker({
         position: currentLocation,
@@ -26,7 +33,7 @@ const Map = () => {
     return () => {
       current?.setMap(null)
     }
-  }, [geolocation])
+  }, [geolocation.latitude])
 
   useEffect(() => {
     const { naver } = window
