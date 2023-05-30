@@ -1,7 +1,7 @@
 'use client'
 import * as Hand from '@/assets/image/waving-hand.gif'
 import Guide from '@/components/Guide/Guide'
-import Description from '@/components/Description'
+import Description from '@/components/Description/Description'
 import MenuItem from '@/components/Menu/MenuItem'
 import ContentLayout from '@/components/Layout/ContentLayout'
 

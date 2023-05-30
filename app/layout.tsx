@@ -9,12 +9,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <SWRConfig
-      value={{
-        revalidateOnFocus: false,
-        revalidateOnReconnect: true,
-      }}
-    >
+    <SWRConfig>
       <html lang="en">
         <body className={`${inter.className} w-screen h-screen bg-bg01`}>
           <Script
