@@ -1,8 +1,6 @@
 /**
  * @description
  * 주변 정류소 목록 조회
- * resultCode: 결과코드
- * resultMessage: 결과메시지
  * stationId: 정류소아이디
  * stationName: 정류소명
  * mobileNo: 정류소 번호
@@ -13,8 +11,6 @@
  * y: Y 좌표
  */
 interface GetBusStationAroundListOut {
-  resultCode: string
-  resultMessage: string
   stationId: string
   stationName: string
   mobileNo: string
