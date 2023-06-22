@@ -5,6 +5,8 @@ import ThinkingFace from '@/assets/image/thinking-face.gif'
 import NearByMap from '@/templates/near-by/NearByMap'
 import { useGetBusStationAroundListOut } from '@/lib/apis/bus-station-service/api/bus-station-service'
 import useGeolocation from 'react-hook-geolocation'
+import RoundWrap from '@/components/Wrap/RoundWrap'
+import MenuItem from '@/components/Menu/MenuItem'
 
 export default function Page() {
   const { latitude, longitude } = useGeolocation()
@@ -18,6 +20,11 @@ export default function Page() {
         보이지 않네요.
       </Guide>
       <NearByMap data={data} currentPosition={{ lat: latitude, lng: longitude }} />
+      <RoundWrap className="h-80 overflow-y-scroll">
+        {data.map((item) => (
+          <MenuItem key={`near-by-menu-item-${item.stationId}`} href={''} text={item.stationName} />
+        ))}
+      </RoundWrap>
     </ContentLayout>
   )
 }
