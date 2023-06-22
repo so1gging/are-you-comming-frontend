@@ -1,7 +1,7 @@
 import ContentLayout from '@/components/Layout/ContentLayout'
 import Guide from '@/components/Guide/Guide'
 import ThinkingFace from '@/assets/image/thinking-face.gif'
-import Map from '@/components/Map/Map'
+import NearByMap from '@/templates/near-by/NearByMap'
 
 export default function Page() {
   return (
@@ -11,7 +11,7 @@ export default function Page() {
         <br />
         보이지 않네요.
       </Guide>
-      <Map />
+      <NearByMap />
     </ContentLayout>
   )
 }
