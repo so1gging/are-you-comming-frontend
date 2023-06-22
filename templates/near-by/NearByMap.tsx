@@ -1,42 +1,32 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
-import useGeolocation from 'react-hook-geolocation'
-import { useGetBusStationAroundListOut } from '@/lib/apis/bus-station-service/api/bus-station-service'
 import Map from '@/components/Map/Map'
+import GetBusStationAroundListOut from '@/lib/apis/bus-station-service/models/GetBusStationAroundListOut'
 
-function NearByMap() {
+interface NearByMapProps {
+  data: GetBusStationAroundListOut[]
+  currentPosition: { lat: number; lng: number }
+}
+function NearByMap({ data, currentPosition }: NearByMapProps) {
   const [map, setMap] = useState<naver.maps.Map>()
   const [current, setCurrent] = useState<naver.maps.Marker>()
   const nearBys = useRef<naver.maps.Marker[]>()
-  const [location, setLocation] = useState<{ lat: number; lng: number } | undefined>(undefined)
-  const geolocation = useGeolocation()
-  const { data } = useGetBusStationAroundListOut(
-    { x: location?.lng || 0, y: location?.lat || 0 },
-    location?.lng !== undefined && location?.lat !== undefined,
-  )
 
   useEffect(() => {
     if (!map) return
 
-    if (geolocation.latitude & geolocation.longitude) {
-      const currentLocation = {
-        lat: geolocation.latitude,
-        lng: geolocation.longitude,
-      }
-      setLocation(currentLocation)
+    const marker = new naver.maps.Marker({
+      position: currentPosition,
+      map,
+    })
 
-      const marker = new naver.maps.Marker({
-        position: currentLocation,
-        map,
-      })
+    map?.morph(currentPosition)
+    setCurrent(marker)
 
-      map?.morph(currentLocation)
-      setCurrent(marker)
-    }
     return () => {
       current?.setMap(null)
     }
-  }, [map, geolocation.latitude])
+  }, [map, currentPosition])
 
   useEffect(() => {
     const { naver } = window
