@@ -9,7 +9,7 @@ import RoundWrap from '@/components/Wrap/RoundWrap'
 import MenuItem from '@/components/Menu/MenuItem'
 
 export default function Page() {
-  const { latitude, longitude, error } = useGeolocation()
+  const { latitude, longitude } = useGeolocation()
   const { data } = useGetBusStationAroundListOut({ x: longitude, y: latitude }, latitude !== null && longitude !== null)
 
   return (
