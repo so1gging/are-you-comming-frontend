@@ -19,7 +19,11 @@ export default function Page() {
       <NearByMap data={data} currentPosition={{ lat: latitude, lng: longitude }} />
       <RoundWrap className="h-80 overflow-y-scroll">
         {data.map((item) => (
-          <MenuItem key={`near-by-menu-item-${item.stationId}`} href={''} text={item.stationName} />
+          <MenuItem
+            key={`near-by-menu-item-${item.stationId}`}
+            href={`/bus-station/${item.stationId}`}
+            text={item.stationName}
+          />
         ))}
       </RoundWrap>
     </ContentLayout>
