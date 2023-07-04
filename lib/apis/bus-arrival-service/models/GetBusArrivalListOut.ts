@@ -18,8 +18,6 @@
  * flag: 상태구분 (RUN:운행중, PASS:운행중, STOP:운행종료, WAIT:회차지대기)
  */
 interface GetBusArrivalListOut {
-  resultCode: string
-  resultMessage: string
   stationId: string
   routeId: string
   locationNo1: number
