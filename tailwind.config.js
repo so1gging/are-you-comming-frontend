@@ -17,7 +17,6 @@ module.exports = {
       fontSize: {
         body: ['16px', { fontWeight: '400', lineHeight: '19px' }],
         subtitle: ['14px', { fontWeight: '400', lineHeight: '17px' }],
-        caption: ['12px', { fontWeight: '400', lineHeight: '17px' }],
         h2: ['20px', { fontWeight: '400', lineHeight: '24px' }],
         h1: ['20px', { fontWeight: '600', lineHeight: '24px' }],
       },
